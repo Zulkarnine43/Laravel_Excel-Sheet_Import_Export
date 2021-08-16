@@ -15,6 +15,11 @@
 //    return view('welcome');
 //});
 
+Route::get('/import', 'MyController@import');
+Route::post('/import', 'MyController@postImport')->name('file.post');
+Route::post('/export', 'MyController@fileExport')->name('file.export');
+
+
 Route::get('/',[
 'uses'=>'MyController@index',
 'as'=>'home'
@@ -73,6 +78,8 @@ Route::get('/download/pdf',[
     'uses'=>'MyController@d_pdf',
     'as'=>'d_pdf'
 ]);
+
+
 
 
 

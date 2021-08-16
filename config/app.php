@@ -153,6 +153,7 @@ return [
          */
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -213,6 +214,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

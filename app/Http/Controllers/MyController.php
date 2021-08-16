@@ -3,20 +3,85 @@
 namespace App\Http\Controllers;
 
 use App\farmer_login_save;
+use App\Model\classes;
 use Barryvdh\DomPDF\Facade as PDF;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Nexmo\Laravel\Facade\Nexmo;
+use Excel;
 
 class MyController extends Controller
 {
     //
+        public function import(){
+                
+                return view ('import');
+                
+            }
+
+            public function postImport(Request $request){
+                  if($request->hasFile('file')){
+                    $path= $request->file('file')->getRealPath();
+                    $data=Excel::load($path)->get();
+                    // return $data;
+
+                    foreach ($data as $row) {
+                        $farmer_register = new farmer_login_save();
+
+                            $Activity = "active";
+                            $farmer_register['f_name'] = $row['f_name'];
+                            $farmer_register['email'] = $row['email'];
+                            $farmer_register['phone'] = $row['phone'];
+                            $farmer_register['district'] = $row['district'];
+                            $farmer_register['zip_code'] = $row['zip_code'];
+                            $farmer_register['gender'] = $row['gender'];
+                            $farmer_register['password'] = $row['password'];
+                            $farmer_register['confirm_password'] = $row['confirm_password'];
+                            $farmer_register['Activity'] = $Activity;
+                            $farmer_register->save();
+                    }
+
+                    return redirect()->back()->with('success',count($data).'added successfully');
+                  }
+            }
+            
+        public function fileExport(Request $request){
+
+
+        Excel::create('contact-list', function($excel){
+
+        $excel->sheet('Sheet 1', function($sheet){
+            $data=farmer_login_save::all();
+            $sheet->fromArray($data);
+        });
+
+        $excel->sheet('Sheet 2', function($sheet){
+            $data=farmer_login_save::select(['f_name'])->get();
+            $sheet->fromArray($data);
+        });
+        })->download('xlsx');
+             return redirect()->back()->with('success','Exported successfully');
+        }
+
+
 	public function index(){
 		
 		return view ('index');
 		
 	}
+
+        public function indexx(){
+        
+        $person=classes::all();
+        return response()->json($person);
+        
+    }
+
+  public function store(Request $request){
+        classes::create($request->all());
+        return response("success");
+    }
 	
 		public function signup(){
 		
@@ -150,6 +215,5 @@ class MyController extends Controller
        return $pdf->stream('invoice.pdf');
 
     }
-
 
 }

@@ -7,7 +7,7 @@
         <div style="margin-left: 350px; margin-top: 80px">
             <h1>{{Session::get('regis_success')}}</h1>
 
-    <form method="post" action="{{route('signup_form_save')}}">
+    <form method="post" action="{{route('signup_form_save')}}" enctype="multipart/form-data">
 	
 	@csrf
         <div>
