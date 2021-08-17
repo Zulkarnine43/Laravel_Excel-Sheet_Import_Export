@@ -23,6 +23,10 @@
                 <input type="text" name="password" placeholder="Enter your password ..."><br>
             </div>
 
+                <div class="form-group mt-3">
+                {!! NoCaptcha::renderJs('en', false, 'onloadCallback') !!}
+                {!! NoCaptcha::display() !!}
+                </div>
 
             <div>
                 <input type="submit"  value="Submit">
@@ -32,5 +36,11 @@
         </form>
 
     </div>
+
+<script>
+    var onloadCallback = function() {
+    alert("grecaptcha is ready!");
+  };
+</script>
 @endsection
 

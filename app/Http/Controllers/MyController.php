@@ -168,6 +168,10 @@ class MyController extends Controller
 
     public function f_login_check(Request $request){
 
+         $request->validate([
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
         $f=farmer_login_save::where('email',$request->email)->first();
         $f2=farmer_login_save::where('password',$request->password)->first();
 
