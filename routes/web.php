@@ -11,19 +11,13 @@
 |
 */
 
-//Route::get('/', function () {
+// Route::get('/', function () {
 //    return view('welcome');
-//});
+// });
 
 Route::get('/import', 'MyController@import');
 Route::post('/import', 'MyController@postImport')->name('file.post');
 Route::post('/export', 'MyController@fileExport')->name('file.export');
-
-
-Route::get('/',[
-'uses'=>'MyController@index',
-'as'=>'home'
-]);
 
 Route::get('/Farmer/signup',[
 'uses'=>'MyController@signup',
@@ -100,4 +94,21 @@ Route::post('/cancel', 'SslCommerzPaymentController@cancel');
 
 Route::post('/ipn', 'SslCommerzPaymentController@ipn');
 //SSLCOMMERZ END
+
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/',[
+// App::setlocale('en'),
+'uses'=>'MyController@index',
+'as'=>'home'
+])->middleware('guest:admin');
+
+Route::get('locale/{locale}', function($locale){
+   Session::put('locale',$locale);
+    return redirect()->back();
+});
+
 

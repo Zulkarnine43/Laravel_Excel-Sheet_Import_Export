@@ -6,14 +6,9 @@
 
     <div style="margin-left: 350px; margin-top: 80px">
 
-
-
-        <form method="post" action="{{route('f_login_check')}}">
+        <form method="post" action="">
 
             @csrf
-
-            <h1>{{Cookie::get('name')}}</h1>
-
             <div>
                 <label> Email:</label><br>
                 <input type="email" name="email" placeholder="Enter your email ...">

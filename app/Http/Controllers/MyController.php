@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Nexmo\Laravel\Facade\Nexmo;
 use Excel;
+use Cookie;
 
 class MyController extends Controller
 {
@@ -177,7 +178,7 @@ class MyController extends Controller
 
         if($f && $f2) {
             Session::put('f_name',$f['f_name']);
-            return redirect('/Farmer/login/page');
+            return redirect('/Farmer/login/page')->withCookie(Cookie::make('name','ZulkarNine',2));
         }
 
     }

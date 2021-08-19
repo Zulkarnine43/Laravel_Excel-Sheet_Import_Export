@@ -16,34 +16,34 @@
     <div class="menu">
 
         <div class="dropdown">
-            <a class="dropbtn" href="{{route('home')}}">Home</a>
+            <a class="dropbtn" href="{{route('home')}}">{{__('home.Home')}}</a>
         </div>
 
         <div class="dropdown">
-            <button class="dropbtn">Register</button>
+            <button class="dropbtn">{{__('home.Register')}}</button>
             <div class="dropdown-content">
-                <a href="{{route('signup_form')}}">Framer</a>
-                <a href="#">Customer</a>
+                <a href="{{route('signup_form')}}">{{__('home.Framer')}}</a>
+                <a href="#">{{__('home.Customer')}}</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button class="dropbtn">registration_details</button>
+            <button class="dropbtn">{{__('home.registration_details')}}</button>
             <div class="dropdown-content">
-                <a href="{{route('all_farmers')}}">Farmer</a>
+                <a href="{{route('all_farmers')}}">{{__('home.Farmer_register_details')}}</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button class="dropbtn">Login</button>
+            <button class="dropbtn">{{__('home.Login')}}</button>
             <div class="dropdown-content">
-                <a href="{{route('f_login')}}">Framer</a>
-                <a href="#">Customer</a>
+                <a href="{{route('f_login')}}">{{__('home.Farmer_log')}}</a>
+                <a href="#">{{__('home.Customer_log')}}</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button href="" class="dropbtn">About Us</button>
+            <button href="" class="dropbtn">{{__('home.About Us')}}</button>
         </div>
 
         @if (session()->has('f_name'))
@@ -54,11 +54,16 @@
                 <h1 style="font-size: 8px">{{Session::get('f_name')}}</h1>
             </button>
             <div class="dropdown-content">
-                <a href="">profile</a>
-                <a href="{{route('f_logout')}}">logout</a>
+                <a href="">{{__('home.profile')}}</a>
+                <a href="{{route('f_logout')}}">{{__('home.logout')}}</a>
             </div>
         </div>
             @endif
+
+            <div>
+                <a href="locale/bn">Bangla</a>
+                 <a href="locale/en">English</a>
+            </div>
 
     </div>
 
